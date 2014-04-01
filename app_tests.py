@@ -1,11 +1,11 @@
 import os
-import app
+from concept_update_register.app import app
 import unittest
 
 class HomeTestCase(unittest.TestCase):
     def setUp(self):
-        app.app.config['TESTING'] = True
-        self.app = app.app.test_client()
+        app.config['TESTING'] = True
+        self.app = app.test_client()
 
     def test_home(self):
         rv = self.app.get('/')
