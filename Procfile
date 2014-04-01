@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn concept_update_register.app:app

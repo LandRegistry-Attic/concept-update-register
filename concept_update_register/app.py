@@ -27,6 +27,3 @@ def setup_logging():
 @app.route('/')
 def title_form():
     return render_template("title_form.html")
-
-if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0")
