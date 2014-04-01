@@ -1,5 +1,5 @@
 import json
-from wtforms import Form, StringField, TextAreaField, validators
+from wtforms import Form, StringField, TextAreaField, validators, FormField, FieldList
 
 class JSONField(TextAreaField):
     def _value(self):
@@ -15,7 +15,16 @@ class JSONField(TextAreaField):
             except ValueError:
                 raise ValueError(self.gettext(u'Invalid JSON data.'))
 
+class RegisteredOwnerForm(Form):
+    name = StringField('Name')
+    address = StringField('Address')
+
+class LenderForm(Form):
+    name = StringField('Name')
+
 class TitleForm(Form):
     title_id = StringField('Title ID', validators=[validators.input_required()])
-    property_address = StringField('Property address', validators=[validators.input_required()])
+    address = StringField('Address', validators=[validators.input_required()])
     extent = JSONField('Extent (as GeoJSON)')
+    registered_owners = FieldList(FormField(RegisteredOwnerForm), min_entries=2)
+    lenders = FieldList(FormField(LenderForm), min_entries=2)

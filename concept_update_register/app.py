@@ -31,10 +31,18 @@ def setup_logging():
 def title_form():
     form = TitleForm(request.form)
     if request.method == 'POST' and form.validate():
-        print form.data
+        data = form.data
+        data['registered_owners'] = filter(
+            lambda o: o['name'] != '',
+            data['registered_owners']
+        )
+        data['lenders'] = filter(
+            lambda o: o['name'] != '',
+            data['lenders']
+        )
         res = requests.post(
           'http://lr-concept-system-of-record.herokuapp.com/entries',
-          data=json.dumps(form.data),
+          data=json.dumps(data),
           headers={'content-type': 'application/json'}
         )
         if res.status_code != 201:

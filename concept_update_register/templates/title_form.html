@@ -7,8 +7,21 @@
     </div>
     <form action="/" method="post" role="form">
       {{ render_field(form.title_id) }}
-      {{ render_field(form.property_address) }}
+      {{ render_field(form.address) }}
       {{ render_field(form.extent) }}
+      <fieldset>
+        <legend>Registered owners</legend>
+        {% for registered_owner_form in form.registered_owners %}
+          {{ render_field(registered_owner_form['name']) }}
+          {{ render_field(registered_owner_form.address) }}
+        {% endfor %}
+      </fieldset>
+      <fieldset>
+        <legend>Lenders</legend>
+        {% for lender_form in form.lenders %}
+          {{ render_field(lender_form['name']) }}
+        {% endfor %}
+      </fieldset>
       <div class="form-group">
         <button class="btn btn-primary" type="submit">Save</button>
       </div>
