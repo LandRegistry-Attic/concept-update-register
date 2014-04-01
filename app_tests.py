@@ -9,7 +9,7 @@ class HomeTestCase(unittest.TestCase):
 
     def test_home(self):
         rv = self.app.get('/')
-        assert 'hello' in rv.data
+        assert 'Update the register' in rv.data
 
 if __name__ == '__main__':
     unittest.main()
