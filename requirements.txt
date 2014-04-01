@@ -2,3 +2,5 @@ Flask==0.10.1
 Flask-BasicAuth
 gunicorn==18.0
 raven[flask]==4.1.1
+requests==2.2.1
+wtforms==1.0.5

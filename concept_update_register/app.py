@@ -1,8 +1,11 @@
 import os
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, request
 from flask.ext.basicauth import BasicAuth
+import json
 import logging
 from raven.contrib.flask import Sentry
+import requests
+from .forms import TitleForm
 
 app = Flask(__name__)
 
@@ -24,6 +27,21 @@ def setup_logging():
         app.logger.addHandler(logging.StreamHandler())
         app.logger.setLevel(logging.INFO)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def title_form():
-    return render_template("title_form.html")
+    form = TitleForm(request.form)
+    if request.method == 'POST' and form.validate():
+        print form.data
+        res = requests.post(
+          'http://lr-concept-system-of-record.herokuapp.com/entries',
+          data=json.dumps(form.data),
+          headers={'content-type': 'application/json'}
+        )
+        if res.status_code != 201:
+            res.raise_for_status()
+        return redirect('/done')
+    return render_template("title_form.html", form=form)
+
+@app.route('/done')
+def title_done():
+    return render_template("title_done.html")
