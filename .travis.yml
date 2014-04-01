@@ -3,3 +3,11 @@ python:
 - '2.7'
 install: pip install -r requirements.txt
 script: python app_tests.py
+deploy:
+  provider: heroku
+  api_key:
+    secure: Dd5RgMydKOUnxTjJlmLj6cj3SodrzhpGNqMY/M+jrP2lvBYZOq7irrX0ZiQdaSxHmD/5j9Hi7eod8c5VIIli5AcVlZnjF0Qo3Ufjbrtoc2jCuoL257AoVMOXRd7diHUbqw/qqEONQxl54X1ilKMso7pB5AzQRAQXK2PoPcf1CXI=
+  app: lr-concept-update-register
+  on:
+    repo: LandRegistry/concept-update-register
+  strategy: git
