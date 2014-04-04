@@ -42,6 +42,10 @@ def title_form():
             lambda o: o['name'] != '',
             data['lenders']
         )
+        data['related_titles'] = filter(
+            lambda o: o['title_number'] != '',
+            data['related_titles']
+        )
         res = requests.post(
           SYSTEM_OF_RECORD_URL + '/entries',
           data=json.dumps(data),
