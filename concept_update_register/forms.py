@@ -23,7 +23,7 @@ class LenderForm(Form):
     name = StringField('Name')
 
 class TitleForm(Form):
-    title_id = StringField('Title ID', validators=[validators.input_required()])
+    title_number = StringField('Title ID', validators=[validators.input_required()])
     address = StringField('Address', validators=[validators.input_required()])
     extent = JSONField('Extent (as GeoJSON)')
     registered_owners = FieldList(FormField(RegisteredOwnerForm), min_entries=2)
