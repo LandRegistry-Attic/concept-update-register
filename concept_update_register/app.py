@@ -40,6 +40,10 @@ def title_form():
             lambda o: o['name'] != '',
             data['lenders']
         )
+        data['related_titles'] = filter(
+            lambda o: o['title_number'] != '',
+            data['related_titles']
+        )
         res = requests.post(
           'http://lr-concept-system-of-record.herokuapp.com/entries',
           data=json.dumps(data),
