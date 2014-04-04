@@ -22,6 +22,12 @@
           {{ render_field(lender_form['name']) }}
         {% endfor %}
       </fieldset>
+      <fieldset>
+        <legend>Related Titles</legend>
+        {% for related_title_form in form.related_title %}
+          {{ render_field(related_title_form['title_number']) }}
+        {% endfor %}
+      </fieldset>
       <div class="form-group">
         <button class="btn btn-primary" type="submit">Save</button>
       </div>

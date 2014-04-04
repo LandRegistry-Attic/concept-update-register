@@ -28,3 +28,6 @@ class TitleForm(Form):
     extent = JSONField('Extent (as GeoJSON)')
     registered_owners = FieldList(FormField(RegisteredOwnerForm), min_entries=2)
     lenders = FieldList(FormField(LenderForm), min_entries=2)
+
+class RelatedTitleForm(Form):
+    title_number = FieldList(FormField(RelatedTitleForm), min_entries=5)
