@@ -24,7 +24,7 @@
       </fieldset>
       <fieldset>
         <legend>Related Titles</legend>
-        {% for related_title_form in form.related_title %}
+        {% for related_title_form in form.related_titles %}
           {{ render_field(related_title_form['title_number']) }}
         {% endfor %}
       </fieldset>
