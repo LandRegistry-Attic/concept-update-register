@@ -22,12 +22,13 @@ class RegisteredOwnerForm(Form):
 class LenderForm(Form):
     name = StringField('Name')
 
+class RelatedTitleForm(Form):
+    title_number = StringField('title_number')
+
 class TitleForm(Form):
     title_id = StringField('Title ID', validators=[validators.input_required()])
     address = StringField('Address', validators=[validators.input_required()])
     extent = JSONField('Extent (as GeoJSON)')
     registered_owners = FieldList(FormField(RegisteredOwnerForm), min_entries=2)
     lenders = FieldList(FormField(LenderForm), min_entries=2)
-
-class RelatedTitleForm(Form):
-    title_number = FieldList(FormField(RelatedTitleForm), min_entries=5)
+    related_titles = FieldList(FormField(RelatedTitleForm), min_entries=5)
