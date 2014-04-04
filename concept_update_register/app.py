@@ -9,6 +9,8 @@ from .forms import TitleForm
 
 app = Flask(__name__)
 
+SYSTEM_OF_RECORD_URL = os.environ.get('SYSTEM_OF_RECORD_URL', 'http://172.42.43:8003')
+
 # Auth
 if os.environ.get('BASIC_AUTH_USERNAME'):
     app.config['BASIC_AUTH_USERNAME'] = os.environ['BASIC_AUTH_USERNAME']
@@ -41,7 +43,7 @@ def title_form():
             data['lenders']
         )
         res = requests.post(
-          'http://lr-concept-system-of-record.herokuapp.com/entries',
+          SYSTEM_OF_RECORD_URL,
           data=json.dumps(data),
           headers={'content-type': 'application/json'}
         )
