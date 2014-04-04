@@ -23,7 +23,7 @@ class LenderForm(Form):
     name = StringField('Name')
 
 class RelatedTitleForm(Form):
-    title_number = StringField('title_number')
+    title_number = StringField('Title Number')
 
 class TitleForm(Form):
     title_number = StringField('Title ID', validators=[validators.input_required()])
